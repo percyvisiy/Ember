@@ -1,5 +1,38 @@
 [gd_scene format=3 uid="uid://blpwvqqljos4e"]
 
+[ext_resource type="PackedScene" uid="uid://2s222lriops2" path="res://Assets/Sprites/player/character-male-b.glb" id="1_jaky0"]
+[ext_resource type="Script" uid="uid://cudky3f60nn61" path="res://Assets/Scrips/player.gd" id="1_vost8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4kxuq"]
+radius = 0.40234375
+height = 1.4542456
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4kxuq"]
+size = Vector3(30, 1, 30)
+
 [node name="world" type="Node3D" unique_id=801879038]
 
 [node name="player" type="CharacterBody3D" parent="." unique_id=318470165]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_vost8")
+
+[node name="Visuals" type="Node3D" parent="player" unique_id=1076946773]
+
+[node name="character-male-b2" parent="player/Visuals" unique_id=930568028 instance=ExtResource("1_jaky0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player" unique_id=542449216]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005099058, 0)
+shape = SubResource("CapsuleShape3D_4kxuq")
+
+[node name="CameraPivot" type="Node3D" parent="player" unique_id=190553277]
+
+[node name="Camera3D" type="Camera3D" parent="player/CameraPivot" unique_id=791509837]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 5, 7)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1496435125]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=253139648]
+shape = SubResource("BoxShape3D_4kxuq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1692088689]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
